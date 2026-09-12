@@ -1,14 +1,15 @@
+import { useState } from "react";
+import { Share2 } from "lucide-react";
 import { resolveAsset } from "../lib/assets";
 import { footer } from "../data/footer";
 import { shows } from "../data/sections";
 import { Reveal } from "./Reveal";
+import { ShareModal } from "./ShareModal";
 
-// The closing blessing. The original build signed off with its own maker's
-// credit; this one carries the InviteO mark instead.
+// The closing blessing and share invitation action.
 export function FinalSection() {
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const quote = footer.quote ?? {};
-  // The closing words are the customer's to remove. The InviteO credit
-  // below them is not part of that switch.
   const closing = shows("footer");
   const linesOfQuote = closing
     ? [quote.firstLine, quote.secondLine, quote.endingText].filter(Boolean)
@@ -31,8 +32,23 @@ export function FinalSection() {
           </p>
         )}
         {closing && footer.family ? <p className="final-family">{footer.family}</p> : null}
+
+        <div className="share-invite-wrap">
+          <button
+            type="button"
+            className="share-invite-button"
+            onClick={() => setIsShareOpen(true)}
+            aria-label="Share invitation"
+          >
+            <Share2 size={18} />
+            <span>निमंत्रण शेअर करा • Share Invite</span>
+          </button>
+        </div>
+
         <div className="final-glow" />
       </Reveal>
+
+      <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
     </section>
   );
 }
