@@ -1,0 +1,6 @@
+{
+  "name": "Grish Family - Ganpati Invitation",
+  "description": "Girish Nivas — Cordial invitation to Ganpati Darshan & Pooja by Grish Family (14th & 15th September).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

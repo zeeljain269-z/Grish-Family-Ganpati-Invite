@@ -1,0 +1,125 @@
+/* Scratch-to-reveal blessing - Temple Darbar.
+ *
+ * Same structure as the other three designs; only the palette and the face
+ * change. Every colour is a token, which matters more here than elsewhere:
+ * this design ships several palettes (gold, plum, terracotta) and redefines
+ * --color-gold-primary in each, so hardcoding a gold would strand the
+ * section in one of them.
+ *
+ * --foil-a/--foil-b are read back by ScratchBlessing.jsx to paint the canvas.
+ * No letter-spacing anywhere: it splits Devanagari conjuncts (de91118).
+ */
+
+.sb-section {
+  --foil-a: var(--color-gold-primary, #d4a64a);
+  --foil-b: var(--color-gold-muted, #b88a2f);
+  position: relative;
+  z-index: 1;
+  padding: 54px 20px 62px;
+  text-align: center;
+}
+
+.sb-heading {
+  font-family: Sura, "Noto Serif Devanagari", serif;
+  font-size: clamp(1.5rem, 6vw, 1.95rem);
+  line-height: 1.35;
+  color: var(--color-text-primary, #2f1d4a);
+  margin: 0 0 18px;
+}
+
+.sb-card {
+  position: relative;
+  margin: 0 auto;
+  max-width: 430px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--blessing-card-bg, linear-gradient(180deg, #ffffff, #f4ecfd));
+  border: 1px solid var(--blessing-card-border, rgba(124, 77, 190, 0.18));
+  box-shadow: 0 14px 34px rgba(20, 10, 40, 0.16);
+  cursor: pointer;
+}
+
+.sb-card:focus-visible {
+  outline: 3px solid var(--color-gold-primary, #d4a64a);
+  outline-offset: 3px;
+}
+
+.sb-parchment {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 208px;
+  padding: 28px 22px;
+}
+
+.sb-quote {
+  font-family: "Noto Serif Devanagari", serif;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--color-text-primary, #2f1d4a);
+  margin: 0;
+  max-width: 30ch;
+}
+
+.sb-sign {
+  font-family: Sura, "Noto Serif Devanagari", serif;
+  font-size: 0.95rem;
+  color: var(--color-gold-primary, #d4a64a);
+  margin: 0;
+}
+
+.sb-foil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: pointer;
+  transition: opacity 0.55s ease;
+}
+
+.sb-card.is-open .sb-foil {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sb-hint {
+  position: absolute;
+  inset: auto 0 20px;
+  z-index: 3;
+  pointer-events: none;
+  font-family: "Noto Serif Devanagari", serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(20, 10, 40, 0.55);
+  transition: opacity 0.35s ease;
+  animation: sb-breathe 2.8s ease-in-out infinite;
+}
+
+.sb-hint.is-gone,
+.sb-card.is-open .sb-hint {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes sb-breathe {
+  0%, 100% { opacity: 0.72; }
+  50%      { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-foil,
+  .sb-hint {
+    transition: none;
+  }
+  .sb-hint {
+    animation: none;
+    opacity: 1;
+  }
+}
