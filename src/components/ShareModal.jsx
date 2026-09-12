@@ -8,7 +8,7 @@ export function ShareModal({ isOpen, onClose }) {
 
   // The public URL to share
   const isAistudioDev = typeof window !== "undefined" && window.location.hostname.includes("ais-dev");
-  const publicOrigin = "https://ais-pre-heeprbr3gmc5t2agjuk7kv-287950853353.asia-southeast1.run.app";
+  const publicOrigin = "https://grish-family-ganpati-invite.vercel.app";
   const currentUrl = typeof window !== "undefined" ? window.location.href : publicOrigin;
   const shareUrl = isAistudioDev ? publicOrigin : currentUrl;
 
