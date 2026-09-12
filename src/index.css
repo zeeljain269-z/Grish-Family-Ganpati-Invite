@@ -1112,5 +1112,17 @@ body:before{display:none}          /* the paper texture tiled over it too */
   color: #ffffff;
 }
 
+.share-btn-download {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f6ead2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+.share-btn-download:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border-color: rgba(212, 166, 74, 0.5);
+}
+
 
 

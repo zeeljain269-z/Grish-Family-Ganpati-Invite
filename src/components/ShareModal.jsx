@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Share2, Copy, Check, ExternalLink, X } from "lucide-react";
+import { Share2, Copy, Check, ExternalLink, X, Download } from "lucide-react";
 
 export function ShareModal({ isOpen, onClose }) {
   const [copied, setCopied] = useState(false);
@@ -136,6 +136,16 @@ export function ShareModal({ isOpen, onClose }) {
             {copied ? <Check size={16} /> : <Copy size={16} />}
             <span>{copied ? "Link Copied!" : "Copy Link"}</span>
           </button>
+
+          <a
+            href="/assets/og-preview-phone.jpg"
+            download="Ganpati-Invitation-Card.jpg"
+            className="share-btn share-btn-download"
+            title="Download Card for WhatsApp Status or Direct Send"
+          >
+            <Download size={16} />
+            <span>Download Card</span>
+          </a>
         </div>
       </div>
     </div>
